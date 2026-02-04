@@ -222,4 +222,33 @@ function answer(side,val){
 }
 
 function pos(side,val){
-  document.getElementById("pos-"+side).i
+  document.getElementById("pos-"+side).innerText=val;
+}
+
+function move(side,step){
+  const arena=document.getElementById("arena");
+  const max=arena.offsetWidth-220;
+  document.getElementById("player-"+side).style.left=
+    (20+(step/16)*max)+"px";
+}
+
+function win(team){
+  gameOver=true;
+  const fw=document.createElement("div");
+  fw.className="firework";
+  fw.innerHTML=`🎆 ${team} MENANG! 🎆`;
+  for(let i=0;i<40;i++){
+    const s=document.createElement("div");
+    s.className="spark";
+    s.style.setProperty("--x",Math.random()*600-300+"px");
+    s.style.setProperty("--y",Math.random()*400-200+"px");
+    fw.appendChild(s);
+  }
+  document.body.appendChild(fw);
+}
+
+render();
+</script>
+
+</body>
+</html>
